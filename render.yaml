@@ -1,0 +1,23 @@
+# Configurazione di Render per l'Applicazione Node.js
+# Questo file definisce come Render deve costruire e avviare l'applicazione Express.
+
+services:
+  - type: web
+    name: oauth-test-client
+    env: node
+    # Il comando di build è necessario per installare le dipendenze
+    buildCommand: npm install
+    # Il comando di avvio per eseguire il server
+    startCommand: node server.js
+    # La porta che il tuo server.js sta ascoltando (Render la espone sulla porta 80/443 pubblica)
+    # È impostata su 3000 in server.js, ma Render la gestisce automaticamente.
+    # L'ambiente 'node' imposta la variabile d'ambiente PORT.
+    
+    # La regione può essere cambiata, ad esempio 'frankfurt' (eu-central-1)
+    region: oregon # Usiamo un'area geografica standard
+
+    # Se vuoi usare Render, potresti dover aggiornare Node.js
+    # per una versione specifica.
+    envVars:
+      - key: NODE_VERSION
+        value: 18.17.1
